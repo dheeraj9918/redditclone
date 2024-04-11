@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:raddit_clone/route.dart';
 import 'package:raddit_clone/screens/login_screen.dart';
 import 'package:raddit_clone/theme/pallet.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:raddit_clone/firebase_options.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +26,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Reddit clone',
       theme: Pallete.darkModeAppTheme,
-      home: const LoginScreen(),
+      routerDelegate:
+          RoutemasterDelegate(routesBuilder: (context) => loggidInRout),
+      routeInformationParser: const RoutemasterParser(),
     );
   }
 }
